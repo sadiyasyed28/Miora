@@ -1,135 +1,207 @@
-/**
- * MIORA PATIENT PORTAL — SHARED LAYOUT STYLES
- * Handles the unified outer shell, sidebar positioning, top header, and content viewport.
- */
-
 @import './patientTokens.css';
 
-/* Outer Shell */
-.miora-patient-layout {
-  display: flex;
+/* ==========================================================================
+   Miora Patient Portal — Unified Layout Styles
+   Consistent with Clinician Dashboard Visual Hierarchy & Tokens
+   ========================================================================== */
+
+.patient-app-shell {
   min-height: 100vh;
-  width: 100%;
-  background: var(--patient-bg);
-  color: var(--patient-text-body);
+  background: var(--patient-page-bg);
+  color: var(--patient-ink);
   font-family: var(--patient-font-sans);
+  display: flex;
   position: relative;
   overflow-x: hidden;
-  box-sizing: border-box;
 }
 
-/* Main Area (Header + Scrollable Content) */
-.miora-patient-main {
-  display: flex;
-  flex-direction: column;
+.patient-main-container {
   flex: 1;
   min-width: 0;
-  min-height: 100vh;
-  background: var(--patient-bg);
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
 }
 
-/* -----------------------------------------------------------------------------
-   Shared Top Header
-   ----------------------------------------------------------------------------- */
-.miora-patient-header {
+/* Header Styles */
+.patient-header {
+  position: sticky;
+  top: 0;
+  z-index: 35;
   height: var(--patient-header-height);
-  min-height: var(--patient-header-height);
-  background: var(--patient-header-bg);
-  border-bottom: 1px solid var(--patient-header-border);
+  background: rgba(253, 249, 247, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--patient-blush-border);
+  padding: 0 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  box-sizing: border-box;
+  gap: 20px;
 }
 
 .patient-header-left {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--patient-text-muted);
+  gap: 16px;
+  min-width: 0;
 }
 
-.patient-header-current-badge {
-  font-weight: 600;
-  color: var(--patient-text-primary);
+.patient-header-mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 6px;
+  color: var(--patient-ink);
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.patient-header-title-group {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 14px;
+  min-width: 0;
 }
 
-.patient-header-tagline {
+.patient-header-title {
+  margin: 0;
+  font-family: var(--patient-font-serif);
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--patient-ink);
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+
+.patient-confidential-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 11.5px;
-  color: var(--patient-text-subtle);
-  border-left: 1px solid var(--patient-border);
-  padding-left: 10px;
-  margin-left: 6px;
+  font-weight: 500;
+  color: var(--patient-brand-rose-deep);
+  background: var(--patient-blush-soft);
+  border: 1px solid #f4d3db;
+  padding: 3px 10px;
+  border-radius: var(--patient-radius-pill);
+  white-space: nowrap;
+}
+
+.patient-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--patient-brand-rose);
 }
 
 .patient-header-right {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 
-/* Notification Bell Button & Dropdown */
-.patient-header-notif-wrap {
+.patient-header-menu-wrap {
   position: relative;
 }
 
-.patient-header-icon-btn {
+/* Icon Buttons (e.g. notifications) */
+.patient-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   background: #ffffff;
-  border: 1px solid var(--patient-border);
-  border-radius: var(--patient-radius-pill);
-  width: 32px;
-  height: 32px;
+  border: 1px solid var(--patient-blush-border);
+  color: var(--patient-ink-light);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--patient-text-body);
   position: relative;
-  transition: all var(--patient-transition-fast);
+  transition: var(--patient-transition);
 }
 
-.patient-header-icon-btn:hover {
-  background: var(--patient-primary-subtle);
-  border-color: var(--patient-primary);
-  color: var(--patient-primary);
+.patient-icon-btn:hover {
+  background: #fdf0f2;
+  border-color: rgba(217, 60, 117, 0.25);
+  color: var(--patient-brand-rose-deep);
 }
 
-.patient-notif-unread-dot {
+.patient-notif-indicator {
   position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 7px;
-  height: 7px;
+  top: -2px;
+  right: -2px;
+  width: 17px;
+  height: 17px;
+  background: var(--patient-brand-rose-deep);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
   border-radius: 50%;
-  background: var(--patient-primary);
-  box-shadow: 0 0 0 2px #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
 }
 
-.patient-header-dropdown {
-  position: absolute;
-  right: 0;
-  top: calc(100% + 8px);
+/* Profile Pill */
+.patient-profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px 5px 6px;
+  border-radius: var(--patient-radius-pill);
   background: #ffffff;
-  border: 1px solid var(--patient-border);
-  border-radius: var(--patient-radius-md);
-  box-shadow: var(--patient-shadow-dropdown);
-  min-width: 240px;
-  max-width: 320px;
+  border: 1px solid var(--patient-blush-border);
+  cursor: pointer;
+  transition: var(--patient-transition);
+}
+
+.patient-profile-pill:hover {
+  background: #fdf0f2;
+  border-color: rgba(217, 60, 117, 0.25);
+}
+
+.patient-avatar-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--patient-blush-pill);
+  color: var(--patient-brand-rose-deep);
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(217, 60, 117, 0.2);
+}
+
+.patient-avatar-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--patient-ink);
+}
+
+.patient-chevron-icon {
+  color: var(--patient-muted);
+}
+
+/* Dropdown Popovers */
+.patient-dropdown-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid var(--patient-blush-border);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(182, 45, 91, 0.09);
   z-index: 50;
   overflow: hidden;
-  animation: patientDropdownFade 150ms ease-out;
+  animation: patientPopoverFade 150ms ease-out;
 }
 
-@keyframes patientDropdownFade {
+@keyframes patientPopoverFade {
   from {
     opacity: 0;
     transform: translateY(-4px);
@@ -140,210 +212,303 @@
   }
 }
 
-.patient-dropdown-head {
+.patient-notif-popover {
+  width: 320px;
+}
+
+.patient-popover-header {
+  padding: 12px 16px;
+  background: var(--patient-surface-subtle);
+  border-bottom: 1px solid var(--patient-blush-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--patient-border-subtle);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--patient-text-primary);
-  background: var(--patient-primary-subtle);
 }
 
-.patient-dropdown-link-btn {
+.patient-popover-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--patient-ink);
+}
+
+.patient-popover-action-btn {
   background: none;
   border: none;
-  padding: 0;
-  font-size: 11px;
-  color: var(--patient-primary);
-  cursor: pointer;
+  color: var(--patient-brand-rose);
+  font-size: 11.5px;
   font-weight: 500;
+  cursor: pointer;
+  padding: 0;
 }
 
-.patient-dropdown-link-btn:hover {
-  text-decoration: underline;
-}
-
-.patient-notif-list {
+.patient-popover-list {
   max-height: 280px;
   overflow-y: auto;
 }
 
-.patient-notif-item {
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--patient-border-subtle);
+.patient-notif-row {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f6eaed;
   cursor: pointer;
-  transition: background var(--patient-transition-fast);
+  transition: background 120ms ease;
 }
 
-.patient-notif-item:hover {
-  background: var(--patient-primary-subtle);
+.patient-notif-row:hover {
+  background: #fdf5f6;
 }
 
-.patient-notif-item.is-unread {
-  background: #fff8fa;
+.patient-notif-row.is-unread {
+  background: #fff8f9;
+  border-left: 3px solid var(--patient-brand-rose);
 }
 
-.patient-notif-item-title {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--patient-text-primary);
-  margin-bottom: 2px;
+.patient-notif-row-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 3px;
 }
 
-.patient-notif-item-msg {
-  display: block;
+.patient-notif-row-title {
+  font-size: 12.5px;
+  color: var(--patient-ink);
+}
+
+.patient-notif-row-date {
   font-size: 11px;
-  color: var(--patient-text-muted);
+  color: var(--patient-subtle);
+}
+
+.patient-notif-row-msg {
+  margin: 0;
+  font-size: 12px;
+  color: var(--patient-muted);
   line-height: 1.35;
 }
 
-.patient-notif-empty {
-  padding: 18px 14px;
+.patient-popover-empty {
+  padding: 24px;
   text-align: center;
-  font-size: 12px;
-  color: var(--patient-text-subtle);
+  font-size: 12.5px;
+  color: var(--patient-subtle);
 }
 
-/* User Profile Pill */
-.patient-header-profile-wrap {
-  position: relative;
+.patient-profile-popover {
+  width: 240px;
+  padding: 8px 0;
 }
 
-.patient-header-profile-btn {
-  background: #ffffff;
-  border: 1px solid var(--patient-border);
-  border-radius: var(--patient-radius-pill);
-  padding: 3px 10px 3px 4px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: all var(--patient-transition-fast);
+.patient-profile-popover-info {
+  padding: 10px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.patient-header-profile-btn:hover {
-  border-color: var(--patient-primary);
-  background: var(--patient-primary-subtle);
+.patient-profile-popover-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--patient-ink);
 }
 
-.patient-header-avatar {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--patient-primary);
-  color: #ffffff;
+.patient-profile-popover-meta {
   font-size: 11.5px;
-  font-weight: 700;
+  color: var(--patient-subtle);
+}
+
+.patient-popover-divider {
+  height: 1px;
+  background: var(--patient-blush-border);
+  margin: 4px 0;
+}
+
+.patient-popover-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  font-size: 13px;
+  color: var(--patient-ink-light);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--patient-transition);
+}
+
+.patient-popover-item:hover {
+  background: #fdf0f2;
+  color: var(--patient-brand-rose-deep);
+}
+
+.patient-popover-item.is-logout {
+  color: #b62d5b;
+}
+
+/* Content Area */
+.patient-content-area {
+  flex: 1;
+  padding: 28px 32px 48px;
+  max-width: var(--patient-content-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Mobile backdrop */
+.patient-mobile-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(39, 18, 24, 0.4);
+  backdrop-filter: blur(3px);
+  z-index: 90;
+}
+
+.patient-mobile-backdrop.is-active {
+  display: block;
+}
+
+/* ==========================================================================
+   Shared Reusable Patient Portal Components
+   ========================================================================== */
+
+/* Page Header Block */
+.patient-page-banner {
+  margin-bottom: 24px;
+}
+
+.patient-page-heading {
+  margin: 0 0 6px;
+  font-family: var(--patient-font-serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--patient-ink);
+  letter-spacing: -0.015em;
+}
+
+.patient-page-subheading {
+  margin: 0;
+  font-size: 14px;
+  color: var(--patient-muted);
+  line-height: 1.5;
+  max-width: 680px;
+}
+
+/* Card Surface */
+.patient-card {
+  background: var(--patient-surface);
+  border: 1px solid var(--patient-blush-border);
+  border-radius: var(--patient-radius-card);
+  box-shadow: var(--patient-shadow-card);
+  padding: 24px;
+  transition: var(--patient-transition);
+}
+
+.patient-card:hover {
+  box-shadow: var(--patient-shadow-elevated);
+}
+
+/* Primary Raspberry Button */
+.patient-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
-
-.patient-header-name {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--patient-text-primary);
-}
-
-.patient-profile-menu-meta {
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--patient-border-subtle);
-  background: var(--patient-primary-subtle);
-}
-
-.patient-profile-meta-name {
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--patient-text-primary);
-}
-
-.patient-profile-meta-email {
-  display: block;
-  font-size: 11px;
-  color: var(--patient-text-muted);
-  margin-top: 1px;
-}
-
-.patient-profile-menu-link {
-  display: flex;
-  align-items: center;
   gap: 8px;
-  padding: 9px 14px;
-  font-size: 12px;
-  color: var(--patient-text-body);
-  text-decoration: none;
-  transition: all var(--patient-transition-fast);
-}
-
-.patient-profile-menu-link:hover {
-  background: var(--patient-primary-subtle);
-  color: var(--patient-primary);
-}
-
-.patient-profile-menu-link.is-danger {
-  color: var(--patient-primary);
+  background: var(--patient-primary-gradient);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--patient-radius-pill);
+  padding: 11px 24px;
+  font-size: 14px;
   font-weight: 600;
-  border-top: 1px solid var(--patient-border-subtle);
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  box-shadow: var(--patient-shadow-button);
+  transition: var(--patient-transition);
+  text-decoration: none;
 }
 
-/* -----------------------------------------------------------------------------
-   Content Viewport & Legacy Shielding
-   ----------------------------------------------------------------------------- */
-.miora-patient-content {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  box-sizing: border-box;
+.patient-btn-primary:hover:not(:disabled) {
+  background: var(--patient-primary-gradient-hover);
+  box-shadow: var(--patient-shadow-button-hover);
+  transform: translateY(-1px);
 }
 
-/* Suppress redundant legacy sidebars inside the shared layout content */
-.miora-patient-content aside,
-.miora-patient-content aside.miora-unified-sidebar,
-.miora-patient-content aside.miora-results-sidebar,
-.miora-patient-content aside.miora-reports-sidebar,
-.miora-patient-content aside.miora-care-sidebar,
-.miora-patient-content aside.companion-sidebar {
-  display: none !important;
+.patient-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
 }
 
-/* Flatten legacy page shells so they fit the content viewport */
-.miora-patient-content > .medhist-page-shell,
-.miora-patient-content > .miora-screening-shell,
-.miora-patient-content > .miora-results-shell,
-.miora-patient-content > .miora-reports-shell,
-.miora-patient-content > .miora-care-shell,
-.miora-patient-content > .miora-companion-shell {
-  display: block !important;
-  width: 100% !important;
-  min-height: auto !important;
-  background: transparent !important;
-  overflow: visible !important;
+.patient-btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
-.miora-patient-content .medhist-main-viewport,
-.miora-patient-content .miora-screening-viewport,
-.miora-patient-content .miora-results-viewport,
-.miora-patient-content .miora-reports-viewport,
-.miora-patient-content .miora-care-viewport,
-.miora-patient-content .companion-viewport {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
+/* Secondary White Button */
+.patient-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  color: var(--patient-ink-light);
+  border: 1px solid var(--patient-blush-border);
+  border-radius: var(--patient-radius-pill);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--patient-transition);
+  text-decoration: none;
 }
 
-/* Suppress legacy redundant user controls in sub-headers */
-.miora-patient-content .screening-user-controls,
-.miora-patient-content .results-user-controls,
-.miora-patient-content .reports-header-actions,
-.miora-patient-content .companion-top-right,
-.miora-patient-content .medhist-header-right {
-  display: none !important;
+.patient-btn-secondary:hover:not(:disabled) {
+  background: #fdf0f2;
+  border-color: rgba(217, 60, 117, 0.25);
+  color: var(--patient-brand-rose-deep);
 }
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .patient-header {
+    padding: 0 20px;
+  }
+  .patient-content-area {
+    padding: 20px 20px 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .patient-header-mobile-toggle {
+    display: inline-flex;
+  }
+  .patient-confidential-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .patient-header {
+    padding: 0 16px;
+    height: 60px;
+  }
+  .patient-content-area {
+    padding: 16px 16px 36px;
+  }
+  .patient-header-title {
+    font-size: 18px;
+  }
+  .patient-avatar-name {
+    display: none;
+  }
+  .patient-profile-pill {
+    padding: 4px;
+  }
+  .patient-chevron-icon {
+    display: none;
+  }
+}
+

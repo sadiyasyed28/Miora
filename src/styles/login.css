@@ -7,7 +7,7 @@
   width: 100vw;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background-color: #fff0f7;
   color: #271218;
@@ -46,7 +46,7 @@
   padding: 36px 48px;
   display: grid;
   grid-template-columns: 1fr 516px;
-  align-items: center;
+  align-items: start;
   gap: 28px;
   box-sizing: border-box;
 }
@@ -58,11 +58,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 640px;
-  height: 100%;
+  justify-content: center;
+  min-height: auto;
   box-sizing: border-box;
   padding-left: 6px;
+  padding-bottom: 24px;
 }
 
 .login-left-top {
@@ -685,180 +685,8 @@
 }
 
 /* --------------------------------------------------------------------------
-   Create Account Screen Specific Fine-Tuning
+   Field Validation and Helper Styles
    -------------------------------------------------------------------------- */
-.create-account-root {
-  background: #fdf0f7;
-  overflow-x: hidden;
-  overflow-y: auto;
-  min-height: 100vh;
-}
-
-.create-account-fixed-illustration {
-  display: none;
-}
-
-.create-account-container {
-  max-width: 1040px;
-  min-height: 100vh;
-  padding: 24px 32px;
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  align-items: center;
-  gap: 28px;
-}
-
-.create-account-left-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-self: flex-start;
-  z-index: 2;
-  height: auto;
-  min-height: auto;
-  padding-top: 18px;
-  padding-left: 14px;
-}
-
-.create-account-branding {
-  margin-bottom: 22px;
-}
-
-.create-account-tagline {
-  margin: 8px 0 0;
-  font-family: var(--sans, 'DM Sans', Arial, sans-serif);
-  font-size: 15.5px;
-  font-weight: 600;
-  line-height: 1.25;
-  color: #271218;
-  letter-spacing: -0.015em;
-}
-
-.create-account-divider {
-  width: 90px;
-  height: 1.5px;
-  background-color: #e59fb0;
-  margin: 16px 0 22px;
-  border-radius: 1px;
-}
-
-.create-account-heading {
-  margin: 0 0 16px;
-  font-family: var(--serif, 'Playfair Display', Georgia, serif);
-  font-weight: 500;
-  font-size: 38px;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  color: #271218;
-}
-
-.create-account-italic {
-  font-family: var(--serif, 'Playfair Display', Georgia, serif);
-  font-style: italic;
-  font-weight: 500;
-  color: #b62d5b;
-}
-
-.create-account-subtext {
-  max-width: 350px;
-  color: #55444b;
-  font-size: 15px;
-  line-height: 1.48;
-  margin: 0;
-}
-
-.create-account-card {
-  max-width: 520px;
-  border-radius: 28px;
-  padding: 22px 32px 18px;
-  box-shadow:
-    0 18px 45px -10px rgba(182, 45, 91, 0.08),
-    0 4px 16px rgba(182, 45, 91, 0.03);
-}
-
-.create-account-card .login-tabs-bar {
-  height: 42px;
-  margin-bottom: 14px;
-}
-
-.create-account-card .login-tab-btn {
-  padding: 7px 16px;
-  font-size: 14px;
-}
-
-.create-account-card-header {
-  margin-bottom: 12px;
-}
-
-.create-account-card-header .login-card-title {
-  font-size: 26px;
-  margin: 0 0 3px;
-}
-
-.create-account-card-header .login-card-subtext {
-  font-size: 13.5px;
-}
-
-.create-account-card .login-role-section {
-  margin-bottom: 12px;
-}
-
-.create-account-card .login-role-label {
-  font-size: 13px;
-  margin-bottom: 5px;
-}
-
-.create-account-card .login-role-card {
-  padding: 10px 12px;
-  gap: 10px;
-  border-radius: 12px;
-}
-
-.create-account-card .login-role-title {
-  font-size: 13.5px;
-  margin-bottom: 2px;
-}
-
-.create-account-card .login-role-desc {
-  font-size: 11px;
-  line-height: 1.25;
-}
-
-.create-account-card .login-form-group {
-  margin-bottom: 9px;
-}
-
-.create-account-card .login-field-label {
-  font-size: 12px;
-  margin-bottom: 3px;
-}
-
-.create-account-card .login-text-input {
-  height: 40px;
-  font-size: 13.5px;
-  border-radius: 10px;
-}
-
-.create-account-card .login-submit-btn {
-  height: 44px;
-  margin-top: 8px;
-  border-radius: 22px;
-  font-size: 14.5px;
-}
-
-.create-account-card .create-account-bottom-link {
-  margin-top: 10px;
-  font-size: 13px;
-}
-
-.create-account-active-tab {
-  background: #ffffff;
-  color: #b62d5b;
-  font-weight: 700;
-  border-bottom: 2.5px solid #b62d5b;
-  box-shadow: 0 2px 7px rgba(182, 45, 91, 0.08);
-}
-
 .login-field-error-text {
   display: block;
   font-size: 11.5px;
@@ -872,27 +700,27 @@
   background: #fffcfd;
 }
 
-.create-account-submit-btn {
-  margin-top: 10px;
-  height: 46px;
-}
-
-.create-account-bottom-link {
+.login-bottom-link {
   text-align: center;
-  margin-top: 14px;
+  margin-top: 16px;
   font-size: 13.5px;
-  color: #4a3a40;
+  color: #62555a;
 }
 
-.create-account-signin-link {
-  color: #b62d5b;
-  font-weight: 700;
-  text-decoration: none;
+.login-inline-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: #c73566;
+  font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
   transition: opacity 140ms ease;
 }
 
-.create-account-signin-link:hover {
+.login-inline-link:hover {
   text-decoration: underline;
   opacity: 0.9;
 }

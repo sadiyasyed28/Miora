@@ -1,176 +1,184 @@
-/* =============================================================================
-   Miora Unified Patient Sidebar Styles
-   ============================================================================= */
+/* ==========================================================================
+   Miora Patient Portal — Unified Sidebar Styles
+   ========================================================================== */
 
-.miora-unified-sidebar {
-  width: 172px;
-  min-width: 172px;
-  max-width: 172px;
-  background: #fdf3f6;
-  border-right: 1px solid rgba(228, 168, 185, 0.32);
-  display: flex;
-  flex-direction: column;
-  padding: 18px 10px 18px;
-  box-sizing: border-box;
-  flex-shrink: 0;
+.patient-sidebar {
+  width: var(--patient-sidebar-width);
   height: 100vh;
   position: sticky;
   top: 0;
+  left: 0;
+  background: rgba(253, 249, 247, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-right: 1px solid var(--patient-blush-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 16px 20px;
   z-index: 40;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: transform 220ms ease;
+  flex-shrink: 0;
+  overflow-y: auto;
 }
 
 /* Brand Section */
-.unified-sidebar-brand {
+.patient-sidebar-brand {
+  padding: 0 8px 16px;
   display: flex;
   flex-direction: column;
-  padding: 0 4px 14px 4px;
+  gap: 12px;
 }
 
-.unified-brand-link {
+.patient-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.patient-brand-link {
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  display: inline-block;
-  line-height: 1;
-  margin-bottom: 3px;
 }
 
-.unified-brand-script {
-  font-family: "Newsreader", "Playfair Display", Georgia, serif;
-  font-size: 26px;
-  font-style: italic;
-  font-weight: 500;
-  color: #241118;
-  letter-spacing: -0.01em;
-  display: inline-block;
+.patient-brand-link .brand-wordmark {
+  font-size: 28px;
+  color: var(--patient-brand-rose);
+  padding-bottom: 0.12em;
 }
 
-.unified-brand-tagline {
-  font-size: 9.5px;
+.patient-brand-divider {
+  width: 1px;
+  height: 26px;
+  background: var(--patient-blush-border);
+}
+
+.patient-brand-tagline {
+  font-size: 11.5px;
   line-height: 1.25;
-  color: #8c5d6e;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  margin-top: 2px;
+  color: var(--patient-muted);
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
-.unified-brand-divider {
+.patient-sidebar-line {
   height: 1px;
-  background: linear-gradient(90deg, rgba(228, 168, 185, 0.45) 0%, rgba(228, 168, 185, 0) 100%);
-  margin-top: 14px;
-  margin-bottom: 2px;
+  background: var(--patient-blush-border);
+  margin: 4px 8px 16px;
 }
 
-/* Navigation List */
-.unified-sidebar-nav {
+/* Main Navigation */
+.patient-sidebar-nav {
   flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-top: 8px;
-}
-
-.unified-sidebar-nav::-webkit-scrollbar {
-  width: 4px;
-}
-
-.unified-sidebar-nav::-webkit-scrollbar-thumb {
-  background: rgba(228, 168, 185, 0.4);
-  border-radius: 4px;
-}
-
-.unified-nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.unified-nav-item {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.unified-nav-link {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 9px 10px;
-  border-radius: 9px;
-  color: #634752;
-  text-decoration: none;
-  font-size: 11.5px;
-  font-weight: 500;
-  line-height: 1.3;
-  transition: all 0.16s ease;
-  box-sizing: border-box;
-}
-
-.unified-nav-link:hover {
-  background: rgba(235, 78, 122, 0.07);
-  color: #241118;
-}
-
-.unified-nav-link.is-active {
-  background: #fde8ef;
-  color: #c83264;
+.patient-nav-section-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--patient-subtle);
   font-weight: 600;
-  box-shadow: inset 2.5px 0 0 #eb4e7a;
+  padding: 8px 12px 4px;
+  margin: 0;
 }
 
-.unified-nav-icon {
-  display: inline-flex;
+.patient-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--patient-ink-light);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: var(--patient-transition);
+  position: relative;
+}
+
+.patient-nav-link:hover {
+  background: #fdf0f2;
+  color: var(--patient-ink);
+  transform: translateX(2px);
+}
+
+.patient-nav-link.is-active {
+  background: var(--patient-blush-pill);
+  color: var(--patient-brand-rose-deep);
+  font-weight: 600;
+  border-color: rgba(217, 60, 117, 0.16);
+  box-shadow: 0 2px 8px rgba(217, 60, 117, 0.05);
+}
+
+.patient-nav-icon {
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: inherit;
   flex-shrink: 0;
-  margin-top: 1px;
 }
 
-.unified-nav-label {
-  display: inline-block;
-  word-break: normal;
-  overflow-wrap: break-word;
+.patient-nav-link.is-active .patient-nav-icon {
+  color: var(--patient-brand-rose-deep);
 }
 
-/* Sidebar Footer (Profile and Settings) */
-.unified-sidebar-footer {
-  margin-top: auto;
-  padding-top: 10px;
+.patient-nav-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.unified-footer-divider {
-  height: 1px;
-  background: linear-gradient(90deg, rgba(228, 168, 185, 0.45) 0%, rgba(228, 168, 185, 0) 100%);
-  margin-bottom: 8px;
-}
-
-.unified-footer-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* Bottom Nav (Profile, Settings, Support) */
+.patient-sidebar-footer {
+  border-top: 1px solid var(--patient-blush-border);
+  padding-top: 14px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 
+/* Close button for mobile drawer */
+.patient-sidebar-close-btn {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--patient-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+/* Mobile responsive sidebar */
 @media (max-width: 900px) {
-  .miora-unified-sidebar {
-    width: 60px;
-    min-width: 60px;
-    max-width: 60px;
-    padding: 14px 6px;
+  .patient-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    transform: translateX(-100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   }
-  .unified-brand-tagline,
-  .unified-nav-label {
-    display: none;
+
+  .patient-sidebar.is-mobile-open {
+    transform: translateX(0);
   }
-  .unified-nav-link {
+
+  .patient-sidebar-close-btn {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 9px;
-  }
-  .unified-brand-script {
-    font-size: 20px;
   }
 }
+

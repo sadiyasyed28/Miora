@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { PatientSidebar } from '../components/PatientSidebar.jsx';
 import { PatientHeader } from '../components/PatientHeader.jsx';
 import '../styles/patientLayout.css';
 
 export function PatientLayout() {
-  return (
-    <div className="miora-patient-layout">
-      {/* 1. Unified 172px Left Sidebar (Single source of truth) */}
-      <PatientSidebar />
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-      {/* 2. Main Right Column: Header + Child Screen Content */}
-      <div className="miora-patient-main">
-        <PatientHeader />
-        <main className="miora-patient-content">
+  return (
+    <div className="patient-app-shell">
+      <div
+        className={`patient-mobile-backdrop ${mobileOpen ? 'is-active' : ''}`}
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
+      <PatientSidebar
+        isMobileOpen={mobileOpen}
+        onCloseMobile={() => setMobileOpen(false)}
+      />
+      <div className="patient-main-container">
+        <PatientHeader onToggleMobile={() => setMobileOpen((prev) => !prev)} />
+        <main className="patient-content-area" id="patient-main">
           <Outlet />
         </main>
       </div>
@@ -22,3 +29,4 @@ export function PatientLayout() {
 }
 
 export default PatientLayout;
+

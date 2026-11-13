@@ -281,15 +281,7 @@ export function LoginScreen() {
           </div>
 
           {/* Mother and Baby Illustration in normal flex flow (never overlaps text) */}
-          <div className="login-illustration-wrap" aria-hidden="true">
-            <img
-              src="/assets/login-illustration-smooth.png"
-              alt="Caring mother holding her newborn baby surrounded by serene floral accents"
-              className="login-illustration-img"
-              width="440"
-              height="380"
-            />
-          </div>
+          
         </section>
 
         {/* ================================================================
